@@ -1,0 +1,9 @@
+function f = feta(A, B, C, w, lam)
+n = size(A, 1);
+AINV = inv(A);
+I = eye(n);
+t = 2 .* pi / w;
+t1 = t * lam;
+AEXP = expm(A * t);
+AEXP1 = expm(A * t1);
+f = C * inv(I - AEXP) * AINV * (2 * AEXP1 - AEXP - I ) * B;

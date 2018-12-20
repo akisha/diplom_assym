@@ -1,0 +1,9 @@
+function f = frho(A, B, C, w, lam)
+n = size(A, 1);
+AINV = inv(A);
+I = eye(n);
+t = 2 .* pi / w;
+t2 = t * (1 - lam);
+AEXP = expm(A * t);
+AEXP2 = expm(A * t2);
+f = - C * inv(I - AEXP) * AINV * (AEXP - 2 * AEXP2 + I) * B;
